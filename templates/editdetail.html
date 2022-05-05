@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="../static/style.css">
+<script src="../static/script.js"></script>
+</head><body class="bgimg">
+	<header>
+		<div id="logo"><img src="../static/logo.png">Nacl&nbsp;Hospital</div>
+		<nav>  
+			<ul>
+				<li><a href="/">Home</a>
+				<li><a href="{{url_for ('AddPatient')}}">AddPatient</a>
+				<li><a href="{{url_for('SearchPatient')}}">SearchPatient</a>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<strong><b>Edit patient detail</strong>
+	</section>
+	
+	<section>
+		<form method="POST" action="{{url_for('update')}}">
+			<lable for="pid">Id</lable>
+			<input  type="number" name="pid" id="pid"value="{{row[0]}}"/><br><br>
+			<lable for="room_no">Room No.</lable>
+			<input align="center" type="number" name="room_id" id="room_id"value="{{row[1]}}"><br><br>		
+			<lable for="first_name">First Name</lable>
+			<input  type="text" name="first_name" id="first_name"value="{{row[2]}}"/><br><br>
+			<lable for="last_name">Last Name</lable>
+			<input  type="text" name="last_name" id="last_name"value="{{row[3]}}"/><br><br>
+			<lable for="sex">Sex</lable>
+			<input  type="text" name="sex" id="sex"value="{{row[4]}}"/><br><br>
+			<lable for="date_of_birth">D.O.B</lable>
+			<input  type="text" name="date_of_birth" id="date_of_birth"value="{{row[5]}}"/><br><br>
+			<lable for="address">Address</lable>
+			<input  type="text" name="address" id="address"value="{{row[6]}}"/><br><br>
+			<lable for="age">Age</lable>
+			<input  type="number" name="age" id="age"value="{{row[7]}}"/><br><br>
+			<lable for="blood_group">Blood Group</lable>
+			<input  type="text" name="blood_group" id="blood_group"value="{{row[8]}}"/><br><br>
+			<lable for="city">City</lable>
+			<input  type="text" name="city" id="city"value="{{row[9]}}"/><br><br>
+			<lable for="date_register">Date Register</lable>
+			<input  type="text" name="date_register" id="date_register"value="{{row[10]}}"/><br><br>	
+			<input  type="submit" name="Update patient" value="Update Patient"/><br><br>
+		</form>
+
+	</section>
+	<section id="pageContent">
+		<main role="main">
+			<table border="1" width="700">
+			<tr>
+				<th>Id</th>
+				<th>Room no</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Sex</th>
+				<th>D.O.B</th>
+				<th>Address</th>
+				<th>Age</th>
+				<th>Blood Group</th>
+				<th>City</th>
+				<th>Date Register</th>
+				<th colspan="2">Action</th>
+			</tr>
+			{% for row in userdata %}
+			<tr align="center">
+				<td>{{row[0]}}</td>
+				<td>{{row[1]}}</td>
+				<td>{{row[2]}}</td>
+				<td>{{row[3]}}</td>
+				<td>{{row[4]}}</td>
+				<td>{{row[5]}}</td>
+				<td>{{row[6]}}</td>
+				<td>{{row[7]}}</td>
+				<td>{{row[8]}}</td>
+				<td>{{row[9]}}</td>
+				<td>{{row[10]}}</td>
+				<td><a href="{{url_for('edit',pid=row[0])}}">Edit</a></td>
+				<td><a href="{{url_for('delete',pid=row[0])}}">Delete</a></td>
+			</tr>
+			{%endfor%}
+			</table>
+			
+		</main>  
+
+		
+
+			

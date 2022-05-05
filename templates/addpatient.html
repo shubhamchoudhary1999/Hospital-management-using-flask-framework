@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="../static/script.js"></script>
+<style>
+  .bgimg
+  {
+      background-image: url("../static/bodyBg.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+     
+  }
+  lable,strong
+  {
+
+    color: white;
+  }
+
+
+    </style>
+
+</head>
+<body class="bgimg">
+	<header>
+		<div id="logo"><img src="../static/logo.png">Nacl&nbsp;Hospital</div>
+		<nav>  
+			<ul>
+				<li><a href="/">Home</a>
+				<li><a href="{{url_for ('AddPatient')}}">AddPatient</a>
+				<li><a href="{{url_for('SearchPatient')}}">SearchPatient</a>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<strong ><b>Enter your detail </strong>
+	</section>
+	
+	<section>
+		<form method="POST" action="{{url_for('create')}}" class="m-5">
+			<lable for="pid">Id</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="number" name="pid" id="pid"/><br><br>	
+			<lable for="room_no">Room No.</lable>&nbsp;&nbsp;&nbsp;
+			<input align="center" type="number" name="room_id" id="room_id"/><br><br>	
+			<lable for="first_name">First Name</lable>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="first_name" id="first_name"/><br><br>
+			<lable for="last_name">Last Name</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="last_name" id="last_name"/><br><br>
+			<lable for="sex">Sex</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="sex" id="sex"/><br><br>
+			<lable for="date_of_birth">D.O.B</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="date_of_birth" id="date_of_birth"/><br><br>
+			<lable for="address">Address</lable>
+			<input  type="text" name="address" id="address"/><br><br>
+			<lable for="age">Age</lable>
+			<input  type="number" name="age" id="age"/><br><br>
+			<lable for="blood_group">Blood Group</lable>
+			<input  type="text" name="blood_group" id="blood_group"/><br><br>
+			<lable for="city">City</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="city" id="city"/><br><br>
+			<lable for="date_register">Date Register</lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="text" name="date_register" id="date_register"/><br><br>	
+			<input  type="submit" name="AddPatient" value="AddPatient"/><br><br>
+		</form>
+
+	</section>
+	<section id="pageContent">
+		<main role="main">
+			<table border="1" width="700" class="table">
+			
+			<thead class="thead-dark">
+			<tr>
+				<th class="mrn">Id</th>
+				<th class="mrn">Room No</th>
+				<th class="mrn">First Name</th>
+				<th>Last Name</th>
+				<th>Sex</th>
+				<th>D.O.B</th>
+				<th>Address</th>
+				<th>Age</th>
+				<th>Blood Group</th>
+				<th>City</th>
+				<th>Date Register</th>
+				<th colspan="2">Action</th>
+			</tr>
+			</thead>
+			{% for row in userdata %}
+			<tr align="center">
+				<td class="mrn">{{row[0]}}</td>
+				<td class="mrn">{{row[1]}}</td>
+				<td class="mrn">{{row[2]}}</td>
+				<td>{{row[3]}}</td>
+				<td>{{row[4]}}</td>
+				<td>{{row[5]}}</td>
+				<td>{{row[6]}}</td>
+				<td>{{row[7]}}</td>
+				<td>{{row[8]}}</td>
+				<td>{{row[9]}}</td>
+				<td>{{row[10]}}</td>
+				<td><a href="{{url_for('edit',pid=row[0])}}">Edit</a></td>
+				<td><a href="{{url_for('delete',pid=row[0])}}">Delete</a></td>
+			</tr>
+			{%endfor%}
+			</table>
+			
+		</main>  
+
